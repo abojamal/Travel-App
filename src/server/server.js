@@ -78,15 +78,3 @@ app.post('/api', (req, res) => {
   };
   getApis();
 });
-// return the body as promise with json content
-// .then((data) => data.json())
-// storing the needed API response info into the endpoint
-// .then((data) => {
-// projectData.agreement = data.agreement;
-// projectData.subjectivity = data.subjectivity;
-// send the stored data in endpoint back to client
-//     res.send(projectData);
-//   })
-//   .catch((error) => {
-//     console.log('Error');
-//   })
