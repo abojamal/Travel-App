@@ -17,19 +17,31 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: '/.js$/',
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-      },
+      // {
+      //   test: /\.scss$/,
+      //   use: [
+      //     'style-loader',
+      //     'css-loader',
+      //     {
+      //       loader: 'sass-loader',
+      //       options: {
+      //         sourceMap: true,
+      //         sassOptions: {
+      //           outputStyle: 'compressed',
+      //         },
+      //       },
+      //     },
+      //   ],
+      // },
+
       {
         test: /\.scss$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
-      //   {
-      //     test: /\.scss$/,
-      //     use: ['style-loader', 'css-loader', 'sass-loader'],
-      //   },
+      // {
+      //   test: /\.scss$/,
+      //   use: ['style-loader', 'css-loader', 'sass-loader'],
+      // },
     ],
   },
   plugins: [
@@ -40,4 +52,5 @@ module.exports = {
     new MiniCssExtractPlugin({ filename: '[name].css' }),
     // new WorkboxPlugin.GenerateSW(),
   ],
+  devtool: 'source-map',
 };

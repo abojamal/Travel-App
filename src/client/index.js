@@ -1,5 +1,4 @@
 import { handleSubmit } from './js/app';
-document.getElementById(submit - btn).addEventListener('click', handleSubmit);
 import './styles/styles.scss';
+document.getElementById('generate').addEventListener('click', handleSubmit);
 export { handleSubmit };
-alert('I exist!');

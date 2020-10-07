@@ -31,26 +31,62 @@ app.listen(8081, function () {
 const projectData = {};
 
 //refering API_KEY to the environment variable
-// const API_KEY = process.env.API_KEY;
-// POST route
-// app.post('/api', function (req, res) {
-//Acquiring user submitted text
-//   let text = req.body.txt;
-
-//Sending API request to meaningcloud with key and user acquired text
-//   fetch(
-//     `https://api.meaningcloud.com/sentiment-2.1?key=${API_KEY}&lang=en&txt=${text}&model=general`
-//   )
-//return the body as promise with json content
+const Geonames_KEY = process.env.Geonames_KEY;
+const Weatherbit_KEY = process.env.Weatherbit_KEY;
+const Pixabay_KEY = process.env.Pixabay_KEY;
+console.log(Geonames_KEY, Weatherbit_KEY, Pixabay_KEY);
+//POST route
+app.post('/api', (req, res) => {
+  //Acquiring user submitted text
+  projectData.date = req.body.date;
+  projectData.city = req.body.city;
+  projectData.dateDiff = req.body.dateDiff;
+  console.log(projectData);
+  // Sending API requests
+  const getApis = async () => {
+    try {
+      const firstResponse = await fetch(
+        `http://api.geonames.org/searchJSON?q=${projectData.city}&maxRows=1&username=${Geonames_KEY}`
+      );
+      const position = await firstResponse.json();
+      const lat = position.geonames[0].lat;
+      const lng = position.geonames[0].lng;
+      console.log(lat, lng);
+      const secondResponse = await fetch(
+        `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lng}&key=${Weatherbit_KEY}`
+      );
+      const weatherData = await secondResponse.json();
+      const weatherHigh = weatherData.data[projectData.dateDiff].low_temp;
+      const weatherLow = weatherData.data[projectData.dateDiff].max_temp;
+      const description =
+        weatherData.data[projectData.dateDiff].weather.description;
+      console.log(projectData.dateDiff, weatherHigh, weatherLow, description);
+      //adding requested weather info to project data Obj
+      projectData.weatherHigh = weatherHigh;
+      projectData.weatherLow = weatherLow;
+      projectData.description = description;
+      const thirdResponse = await fetch(
+        `https://pixabay.com/api/?key=${Pixabay_KEY}&q=${projectData.city}&category=places&image_type=photo`
+      );
+      const cityImage = await thirdResponse.json();
+      projectData.cityImage = cityImage.hits[0].webformatURL;
+      res.send(projectData);
+      console.log(projectData);
+    } catch (error) {
+      console.log(`there was as error:\n ${error}`);
+    }
+  };
+  getApis();
+});
+// return the body as promise with json content
 // .then((data) => data.json())
-//storing the needed API response info into the endpoint
+// storing the needed API response info into the endpoint
 // .then((data) => {
-//   projectData.agreement = data.agreement;
-//   projectData.subjectivity = data.subjectivity;
-//send the stored data in endpoint back to client
-//       res.send(projectData);
-//     })
-//     .catch((error) => {
-//       console.log('Error');
-//     });
-// });
+// projectData.agreement = data.agreement;
+// projectData.subjectivity = data.subjectivity;
+// send the stored data in endpoint back to client
+//     res.send(projectData);
+//   })
+//   .catch((error) => {
+//     console.log('Error');
+//   })
