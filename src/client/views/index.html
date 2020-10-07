@@ -9,31 +9,33 @@
 </head>
 
 <body>
+  <div class="holder headline">
+    <h1>Travel Planner</h1>
+  </div>
   <div id="app">
-    <div class="holder headline">
-      Travel App
-    </div>
-    <div class="holder date">
-      <label for="date">Enter date</label>
+
+    <div class="holder date" id="enterstartdate">
+      <label for="date">Enter start date</label>
       <input type="date" id="traveldate" placeholder="enter travel date">
     </div>
-    <div class="holder date">
-      <label for="date">Enter date</label>
+    <div class="holder date" id="enterenddate">
+      <label for="date">Enter return date</label>
       <input type="date" id="returndate" placeholder="enter return date">
     </div>
-    <div class="holder city">
+    <div class="holder city" id="entercity">
       <label for="city">Enter City</label>
       <textarea class="myInput" id="city" placeholder="Enter City here" rows="1" cols="30"></textarea>
       <button id="generate" type="submit"> Generate </button>
     </div>
-    <div class="holder entry">
-      <div class="title"></div>
+
+    <div class="holder entry" id="con">
       <div id="entryHolder">
-        <div id="date"></div>
-        <div id="temp"></div>
-        <div id="content"></div>
-        <div id="length"></div>
-        <div id="cityimage"></div>
+        <div id="info" class="box"></div>
+        <div id="date" class="box"></div>
+        <div id="temp" class="box"></div>
+        <div id="content" class="box"></div>
+        <div id="length" class="box"></div>
+        <div id="cityimage" class="box"></div>
       </div>
     </div>
   </div>

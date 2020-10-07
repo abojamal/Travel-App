@@ -22,12 +22,11 @@ let handleSubmit = () => {
     console.log(replyfromserver);
 
     //DOM
+    document.getElementById('info').innerHTML =
+      '<h2>Trip to: ' + replyfromserver.city + '</h2>';
+
     document.getElementById('date').innerHTML =
-      'Trip to: ' +
-      replyfromserver.city +
-      '<br />' +
-      'Departing: ' +
-      replyfromserver.date;
+      'Departing: ' + replyfromserver.date;
     document.getElementById('temp').innerHTML =
       'Typical weather for then is: ' +
       '<br />' +
