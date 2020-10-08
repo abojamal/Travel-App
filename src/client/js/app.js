@@ -4,7 +4,6 @@ let handleSubmit = () => {
   const city = document.getElementById('city').value;
   const date = document.getElementById('traveldate').value;
   const enddate = document.getElementById('returndate').value;
-  console.log(city, date);
 
   data.date = date;
   data.city = city;
@@ -19,7 +18,7 @@ let handleSubmit = () => {
       body: JSON.stringify(input),
     });
     const replyfromserver = await response.json();
-    console.log(replyfromserver);
+    // console.log(replyfromserver);
 
     //DOM
     document.getElementById('info').innerHTML =
@@ -44,9 +43,8 @@ let handleSubmit = () => {
       ' days away';
     document.getElementById('length').innerHTML =
       'Trip length: ' + data.triplength;
-    const image = document.createElement('img');
+    const image = document.getElementById('cities');
     image.src = replyfromserver.cityImage;
-    document.getElementById('cityimage').appendChild(image);
   };
 
   //date Differance calculation and returning 15 for days > 16
@@ -61,7 +59,6 @@ let handleSubmit = () => {
     const secondDate = new Date(date);
     const diff =
       (secondDate.getTime() - firstDate.getTime()) / (1000 * 3600 * 24);
-    // console.log(Math.floor(diff));
 
     if (Math.floor(diff) === 0) {
       return 0;
@@ -78,7 +75,7 @@ let handleSubmit = () => {
     const length = (end.getTime() - start.getTime()) / (1000 * 3600 * 24);
     return Math.floor(length);
   };
-  console.log(triplength());
+
   data.dateDiff = dateDiff();
   data.triplength = triplength();
   postdata(data);

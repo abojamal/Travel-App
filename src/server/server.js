@@ -34,14 +34,14 @@ const projectData = {};
 const Geonames_KEY = process.env.Geonames_KEY;
 const Weatherbit_KEY = process.env.Weatherbit_KEY;
 const Pixabay_KEY = process.env.Pixabay_KEY;
-console.log(Geonames_KEY, Weatherbit_KEY, Pixabay_KEY);
+
 //POST route
 app.post('/api', (req, res) => {
   //Acquiring user submitted text
   projectData.date = req.body.date;
   projectData.city = req.body.city;
   projectData.dateDiff = req.body.dateDiff;
-  console.log(projectData);
+
   // Sending API requests
   const getApis = async () => {
     try {
@@ -51,7 +51,7 @@ app.post('/api', (req, res) => {
       const position = await firstResponse.json();
       const lat = position.geonames[0].lat;
       const lng = position.geonames[0].lng;
-      console.log(lat, lng);
+
       const secondResponse = await fetch(
         `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lng}&key=${Weatherbit_KEY}`
       );
@@ -60,7 +60,7 @@ app.post('/api', (req, res) => {
       const weatherLow = weatherData.data[projectData.dateDiff].max_temp;
       const description =
         weatherData.data[projectData.dateDiff].weather.description;
-      console.log(projectData.dateDiff, weatherHigh, weatherLow, description);
+
       //adding requested weather info to project data Obj
       projectData.weatherHigh = weatherHigh;
       projectData.weatherLow = weatherLow;
@@ -71,10 +71,11 @@ app.post('/api', (req, res) => {
       const cityImage = await thirdResponse.json();
       projectData.cityImage = cityImage.hits[0].webformatURL;
       res.send(projectData);
-      console.log(projectData);
     } catch (error) {
       console.log(`there was as error:\n ${error}`);
     }
   };
   getApis();
 });
+
+// export { app };

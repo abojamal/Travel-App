@@ -1,10 +1,25 @@
-# Weather-Journal App Project
+# Travel App
 
 ## Overview
-This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI. 
 
-## Instructions
-This will require modifying the `server.js` file and the `website/app.js` file. You can see `index.html` for element references, and once you are finished with the project steps, you can use `style.css` to style your application to customized perfection.
+In this project , I have build out a travel app that asks the user to input the location,travel and return date then return weather forcast ,image of the location, days remaining and trip length by using information obtained from external APIs.
 
-## Extras
-If you are interested in testing your code as you go, you can use `tests.js` as a template for writing and running some basic tests for your code.
+## Prerequite
+
+-getting API keys from Geonames,Weatherbit and Pixabay
+
+## Installation
+
+- node
+- expess (refer to json file for Dependencies)
+- webpack
+
+## notes
+
+- I chose " add end date and display length of trip" as the additional requirement
+
+-Please uncomment export {app} from server.js file to test server with jest
+
+- weather forecast is for 16 days maximum, any date after that will have the same result as day 16 . This limitation is due to not having a paid account in Weatherbit
+
+- input validation not included
