@@ -194,4 +194,78 @@ button:focus {
       'five'
       'img';
   }
+  #traveldate {
+    width: fit-content;
+  }
+  #returndate {
+    width: fit-content;
+  }
+
+  textarea {
+    width: 200px;
+  }
+}
+
+@media (max-width: 700px) {
+  #app {
+    display: grid;
+    height: 100vh;
+    margin-top: 1%;
+    background: white;
+    color: #080101;
+    grid-gap: 1em;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    grid-template-rows: 15% 15% 10% 60%;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      'first'
+      'second'
+      'third'
+      'con';
+  }
+
+  #entryHolder {
+    display: grid;
+    // grid-template-rows: 10% 25% 10% 15% 10% 40%;
+    grid-template-rows: min-content;
+    // grid-template-columns: 100%;
+    height: 100%;
+    grid-template-areas:
+      'one'
+      'two'
+      'three'
+      'four'
+      'five'
+      'img';
+  }
+  img {
+    width: 70%;
+    height: 60%;
+  }
+
+  button {
+    width: 100px;
+    height: 50px;
+    background: #086972;
+    color: #fbfd8a;
+    font-size: 15px;
+    font-family: 'Oswald', sans-serif;
+    border: none;
+    box-shadow: 2px 4px 5px #444;
+    &:hover {
+      color: yellow;
+    }
+  }
+
+  #traveldate {
+    width: fit-content;
+  }
+  #returndate {
+    width: fit-content;
+  }
+
+  textarea {
+    width: 200px;
+  }
 }
